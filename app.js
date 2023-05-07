@@ -23,6 +23,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.querySelector("select").addEventListener("change", setDivision);
 
+document.querySelector("#sfmCodeBtn").addEventListener("click", generateSFM);
+
 document
   .querySelector("#singleCodeBtn")
   .addEventListener("click", generateSingle);
@@ -50,6 +52,25 @@ document
 function setDivision(e) {
   division = e.target.value;
   localStorage.setItem("division", division.toString());
+}
+
+function generateSFM(e){
+  e.preventDefault();
+  let prefix = document.querySelector("#prefixCode").value;
+  let data = document.querySelector("#dataCode").value;
+  let suffix = document.querySelector("#suffixCode").value;
+  // itemCode = ("000000" + itemCode).slice(-16);
+  itemCode = prefix + data + suffix
+  let tr = document.createElement("tr");
+  let td = document.createElement("td");
+  let output = document.createElement("img");
+  output.className = "";
+  output.src = `
+            https://barcode.tec-it.com/barcode.ashx?data=${itemCode}&code=GS1-128&multiplebarcodes=false&translate-esc=false&unit=Fit&dpi=96&imagetype=Gif&rotation=0&color=%23000000&bgcolor=%23ffffff&qunit=Mm&quiet=0' alt='Barcode Generator TEC-IT
+            `;
+  document.getElementById("SFMTableData").append(tr, output, td);
+
+  // saveLabel(itemCode);
 }
 
 function generateSingle(e) {
