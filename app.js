@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // localStorage.getItem('division') === null
   localStorage.setItem("division", "2230");
   // : localStorage.getItem('division')
+  
 });
 
 document.querySelector("select").addEventListener("change", setDivision);
@@ -56,9 +57,22 @@ function setDivision(e) {
 
 function generateSFM(e){
   e.preventDefault();
-  let prefix = document.querySelector("#prefixCode").value;
+  // let prefix = document.querySelector("#prefixCode").value;
+  if (!document.querySelector("#prefixCode").value){
+    prefix = localStorage.getItem("prefix")
+  } else {
+    prefix = document.querySelector("#prefixCode").value;
+    localStorage.setItem("prefix", prefix);
+  }
+  // localStorage.setItem("prefix", prefix);
   let data = document.querySelector("#dataCode").value;
   let suffix = document.querySelector("#suffixCode").value;
+  if (!document.querySelector("#suffixCode").value){
+    suffix = localStorage.getItem("suffix")
+  } else {
+    suffix = document.querySelector("#suffixCode").value;
+    localStorage.setItem("suffix", suffix);
+  }
   // itemCode = ("000000" + itemCode).slice(-16);
   itemCode = prefix + data + suffix
   let tr = document.createElement("tr");
