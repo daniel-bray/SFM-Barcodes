@@ -74,15 +74,33 @@ function generateSFM(e){
     localStorage.setItem("suffix", suffix);
   }
   // itemCode = ("000000" + itemCode).slice(-16);
-  itemCode = prefix + data + suffix
+  let intervalId;
+  let quantity = document.querySelector("#totalCodes").value;
+  let beginningNumber = 1
+
+  function createLabel(){
+    const container = document.getElementById("SFMTableData")
+
+    itemCode = prefix + data + suffix
+    container.innerHTML = ''
   let tr = document.createElement("tr");
   let td = document.createElement("td");
   let output = document.createElement("img");
   output.className = "";
-  output.src = `
+output.src = `
             https://barcode.tec-it.com/barcode.ashx?data=${itemCode}&code=GS1-128&multiplebarcodes=false&translate-esc=false&unit=Fit&dpi=96&imagetype=Gif&rotation=0&color=%23000000&bgcolor=%23ffffff&qunit=Mm&quiet=0' alt='Barcode Generator TEC-IT
             `;
-  document.getElementById("SFMTableData").append(tr, output, td);
+  container.append(tr, output, td);
+    data++;
+    beginningNumber++;
+
+    if (beginningNumber > quantity){
+      clearInterval(intervalId);
+    }
+  }
+
+
+  intervalId = setInterval(createLabel, 1000);
 
   // saveLabel(itemCode);
 }
@@ -107,9 +125,12 @@ function generateMultiple(e) {
   e.preventDefault();
   let itemCode = document.querySelector("#multipleCode").value;
   let quantity = document.querySelector("#quantity").value;
+  let intervalId;
 
-  while (quantity > 0) {
+  function createLabel(){
     itemCode = ("000000" + itemCode).slice(-16);
+    const container = document.getElementById("multipleTableData")
+    container.innerHTML = ''
     let tr = document.createElement("tr");
     let td = document.createElement("td");
     let p = document.createElement("p");
@@ -123,8 +144,14 @@ function generateMultiple(e) {
     saveLabel(itemCode);
     itemCode++;
     quantity--;
-    document.getElementById("multipleTableData").append(tr, output, td, p);
+    container.append(tr, output, td, p);
+
+    if (quantity < 0){
+      clearInterval(intervalId)
+    }
   }
+
+  intervalId = setInterval(createLabel, 500);
 }
 
 function generatePallet(e) {
@@ -184,3 +211,32 @@ function clearPalletData() {
 }
 
 document.getElementById("datepicker").valueAsDate = new Date();
+
+
+
+
+
+
+// function generateMultiple(e) {
+//   e.preventDefault();
+//   let itemCode = document.querySelector("#multipleCode").value;
+//   let quantity = document.querySelector("#quantity").value;
+
+//   while (quantity > 0) {
+//     itemCode = ("000000" + itemCode).slice(-16);
+//     let tr = document.createElement("tr");
+//     let td = document.createElement("td");
+//     let p = document.createElement("p");
+//     p.className = "s12 center";
+//     p.textContent = itemCode;
+//     tr.style.height = "3em";
+//     let output = document.createElement("img");
+//     output.src = `
+//     https://barcode.tec-it.com/barcode.ashx?data=${itemCode}&code=PDF417&multiplebarcodes=false&translate-esc=false&unit=Fit&dpi=96&imagetype=Gif&rotation=0&color=%23000000&bgcolor=%23ffffff&qunit=Mm&quiet=0' alt='Barcode Generator TEC-IT
+//   `;
+//     saveLabel(itemCode);
+//     itemCode++;
+//     quantity--;
+//     document.getElementById("multipleTableData").append(tr, output, td, p);
+//   }
+// }
