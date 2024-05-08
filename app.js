@@ -102,7 +102,7 @@ output.src = `
 
   intervalId = setInterval(createLabel, 1000);
 
-  saveLabel(itemCode);
+  // saveLabel(itemCode);
 }
 
 function generateSingle(e) {
