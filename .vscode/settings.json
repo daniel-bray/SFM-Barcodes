@@ -1,3 +1,7 @@
 {
-  "liveServer.settings.port": 5501
+  "liveServer.settings.port": 5501,
+  "code-runner.clearPreviousOutput": true,
+"code-runner.showExecutionMessage": false,
+"code-runner.ignoreSelection": true
+
 }
