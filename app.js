@@ -22,38 +22,38 @@ document.addEventListener("DOMContentLoaded", function () {
   
 });
 
-// document.querySelector("select").addEventListener("change", setDivision);
+document.querySelector("select").addEventListener("change", setDivision);
 
 document.querySelector("#sfmCodeBtn").addEventListener("click", generateSFM);
 
-// document
-//   .querySelector("#singleCodeBtn")
-//   .addEventListener("click", generateSingle);
+document
+  .querySelector("#singleCodeBtn")
+  .addEventListener("click", generateSingle);
 
-// document
-//   .querySelector("#clearSingleButton")
-//   .addEventListener("click", clearSingleData);
+document
+  .querySelector("#clearSingleButton")
+  .addEventListener("click", clearSingleData);
 
-// document
-//   .querySelector("#multipleCodeBtn")
-//   .addEventListener("click", generateMultiple);
+document
+  .querySelector("#multipleCodeBtn")
+  .addEventListener("click", generateMultiple);
 
-// document
-//   .querySelector("#clearMultipleButton")
-//   .addEventListener("click", clearMultipleData);
+document
+  .querySelector("#clearMultipleButton")
+  .addEventListener("click", clearMultipleData);
 
-// document
-//   .querySelector("#palletCodeBtn")
-//   .addEventListener("click", generatePallet);
+document
+  .querySelector("#palletCodeBtn")
+  .addEventListener("click", generatePallet);
 
-// document
-//   .querySelector("#clearPalletButton")
-//   .addEventListener("click", clearPalletData);
+document
+  .querySelector("#clearPalletButton")
+  .addEventListener("click", clearPalletData);
 
-// function setDivision(e) {
-//   division = e.target.value;
-//   localStorage.setItem("division", division.toString());
-// }
+function setDivision(e) {
+  division = e.target.value;
+  localStorage.setItem("division", division.toString());
+}
 
 function generateSFM(e){
   e.preventDefault();
@@ -75,12 +75,12 @@ function generateSFM(e){
   }
   // itemCode = ("000000" + itemCode).slice(-16);
   let intervalId;
-  // let quantity = document.querySelector("#totalCodes").value;
-  let quantity = 1
+  let quantity = document.querySelector("#totalCodes").value;
   let beginningNumber = 1
 
   function createLabel(){
     const container = document.getElementById("SFMTableData")
+
     itemCode = prefix + data + suffix
     container.innerHTML = ''
   let tr = document.createElement("tr");
@@ -102,115 +102,115 @@ output.src = `
 
   intervalId = setInterval(createLabel, 1000);
 
-  // saveLabel(label);
+  // saveLabel(itemCode);
 }
 
-// function generateSingle(e) {
-//   e.preventDefault();
-//   let itemCode = document.querySelector("#singleCode").value;
-//   itemCode = ("000000" + itemCode).slice(-16);
-//   let tr = document.createElement("tr");
-//   let td = document.createElement("td");
-//   let output = document.createElement("img");
-//   output.className = "";
-//   output.src = `
-//             https://barcode.tec-it.com/barcode.ashx?data=${itemCode}&code=PDF417&multiplebarcodes=false&translate-esc=false&unit=Fit&dpi=96&imagetype=Gif&rotation=0&color=%23000000&bgcolor=%23ffffff&qunit=Mm&quiet=0' alt='Barcode Generator TEC-IT
-//             `;
-//   document.getElementById("barcodeTableData").append(tr, output, td);
+function generateSingle(e) {
+  e.preventDefault();
+  let itemCode = document.querySelector("#singleCode").value;
+  itemCode = ("000000" + itemCode).slice(-16);
+  let tr = document.createElement("tr");
+  let td = document.createElement("td");
+  let output = document.createElement("img");
+  output.className = "";
+  output.src = `
+            https://barcode.tec-it.com/barcode.ashx?data=${itemCode}&code=PDF417&multiplebarcodes=false&translate-esc=false&unit=Fit&dpi=96&imagetype=Gif&rotation=0&color=%23000000&bgcolor=%23ffffff&qunit=Mm&quiet=0' alt='Barcode Generator TEC-IT
+            `;
+  document.getElementById("barcodeTableData").append(tr, output, td);
 
-//   saveLabel(itemCode);
-// }
+  saveLabel(itemCode);
+}
 
-// function generateMultiple(e) {
-//   e.preventDefault();
-//   let itemCode = document.querySelector("#multipleCode").value;
-//   let quantity = document.querySelector("#quantity").value;
-//   let intervalId;
+function generateMultiple(e) {
+  e.preventDefault();
+  let itemCode = document.querySelector("#multipleCode").value;
+  let quantity = document.querySelector("#quantity").value;
+  let intervalId;
 
-//   function createLabel(){
-//     itemCode = ("000000" + itemCode).slice(-16);
-//     const container = document.getElementById("multipleTableData")
-//     container.innerHTML = ''
-//     let tr = document.createElement("tr");
-//     let td = document.createElement("td");
-//     let p = document.createElement("p");
-//     p.className = "s12 center";
-//     p.textContent = itemCode;
-//     tr.style.height = "3em";
-//     let output = document.createElement("img");
-//     output.src = `
-//     https://barcode.tec-it.com/barcode.ashx?data=${itemCode}&code=PDF417&multiplebarcodes=false&translate-esc=false&unit=Fit&dpi=96&imagetype=Gif&rotation=0&color=%23000000&bgcolor=%23ffffff&qunit=Mm&quiet=0' alt='Barcode Generator TEC-IT
-//   `;
-//     saveLabel(itemCode);
-//     itemCode++;
-//     quantity--;
-//     container.append(tr, output, td, p);
+  function createLabel(){
+    itemCode = ("000000" + itemCode).slice(-16);
+    const container = document.getElementById("multipleTableData")
+    container.innerHTML = ''
+    let tr = document.createElement("tr");
+    let td = document.createElement("td");
+    let p = document.createElement("p");
+    p.className = "s12 center";
+    p.textContent = itemCode;
+    tr.style.height = "3em";
+    let output = document.createElement("img");
+    output.src = `
+    https://barcode.tec-it.com/barcode.ashx?data=${itemCode}&code=PDF417&multiplebarcodes=false&translate-esc=false&unit=Fit&dpi=96&imagetype=Gif&rotation=0&color=%23000000&bgcolor=%23ffffff&qunit=Mm&quiet=0' alt='Barcode Generator TEC-IT
+  `;
+    saveLabel(itemCode);
+    itemCode++;
+    quantity--;
+    container.append(tr, output, td, p);
 
-//     if (quantity < 0){
-//       clearInterval(intervalId)
-//     }
-//   }
+    if (quantity < 0){
+      clearInterval(intervalId)
+    }
+  }
 
-//   intervalId = setInterval(createLabel, 500);
-// }
+  intervalId = setInterval(createLabel, 500);
+}
 
-// function generatePallet(e) {
-//   e.preventDefault();
-//   let pallets = document.getElementById("palletNumber").value;
-//   let palletArray = pallets.split(",");
-//   let stop = document.getElementById("stopNumber").value;
-//   stop = ("00" + stop).slice(-2);
-//   let route = document.getElementById("routeNumber").value;
+function generatePallet(e) {
+  e.preventDefault();
+  let pallets = document.getElementById("palletNumber").value;
+  let palletArray = pallets.split(",");
+  let stop = document.getElementById("stopNumber").value;
+  stop = ("00" + stop).slice(-2);
+  let route = document.getElementById("routeNumber").value;
 
-//   division = localStorage.getItem("division");
-//   // console.log('in pallet label', division)
+  division = localStorage.getItem("division");
+  // console.log('in pallet label', division)
 
-//   let d = document.querySelector('input[type="date"]');
-//   console.log(d.value);
+  let d = document.querySelector('input[type="date"]');
+  console.log(d.value);
 
-//   let month = d.value.split("-")[1];
-//   let year = d.value.split("-")[0];
-//   let day = d.value.split("-")[2];
-//   console.log(day + " " + month + " " + year);
-//   // let month = ("00" + (d.getMonth() + 1)).slice(-2);
-//   // let year = d.getFullYear();
-//   // let day = ("00" + d.getDate()).slice(-2);
+  let month = d.value.split("-")[1];
+  let year = d.value.split("-")[0];
+  let day = d.value.split("-")[2];
+  console.log(day + " " + month + " " + year);
+  // let month = ("00" + (d.getMonth() + 1)).slice(-2);
+  // let year = d.getFullYear();
+  // let day = ("00" + d.getDate()).slice(-2);
 
-//   for (let i = 0; i < palletArray.length; i++) {
-//     //itemCode = palletArray[i] + year + month + day + division + route + stop;
-//     itemCode = palletArray[i] + month + day + division + route + stop;
+  for (let i = 0; i < palletArray.length; i++) {
+    //itemCode = palletArray[i] + year + month + day + division + route + stop;
+    itemCode = palletArray[i] + month + day + division + route + stop;
     
-//     let tr = document.createElement("tr");
+    let tr = document.createElement("tr");
 
-//     let td = document.createElement("td");
-//     let p = document.createElement("p");
-//     p.className = "s12 center";
-//     p.textContent = itemCode;
-//     tr.style.height = "3em";
-//     let output = document.createElement("img");
-//     output.src = `
-//     https://barcode.tec-it.com/barcode.ashx?data=${itemCode}&code=PDF417&multiplebarcodes=false&translate-esc=false&unit=Fit&dpi=96&imagetype=Gif&rotation=0&color=%23000000&bgcolor=%23ffffff&qunit=Mm&quiet=0' alt='Barcode Generator TEC-IT
-//   `;
-//     saveLabel(itemCode);
-//     // console.log(itemCode)
-//     document.getElementById("displayPalletData").append(tr, output, td, p);
-//   }
-// }
+    let td = document.createElement("td");
+    let p = document.createElement("p");
+    p.className = "s12 center";
+    p.textContent = itemCode;
+    tr.style.height = "3em";
+    let output = document.createElement("img");
+    output.src = `
+    https://barcode.tec-it.com/barcode.ashx?data=${itemCode}&code=PDF417&multiplebarcodes=false&translate-esc=false&unit=Fit&dpi=96&imagetype=Gif&rotation=0&color=%23000000&bgcolor=%23ffffff&qunit=Mm&quiet=0' alt='Barcode Generator TEC-IT
+  `;
+    saveLabel(itemCode);
+    // console.log(itemCode)
+    document.getElementById("displayPalletData").append(tr, output, td, p);
+  }
+}
 
-// function clearSingleData() {
-//   document.getElementById("displayAreaSingle").remove();
-// }
+function clearSingleData() {
+  document.getElementById("displayAreaSingle").remove();
+}
 
-// function clearMultipleData() {
-//   document.getElementById("displayAreaMultiple").remove();
-// }
+function clearMultipleData() {
+  document.getElementById("displayAreaMultiple").remove();
+}
 
-// function clearPalletData() {
-//   document.getElementById("displayAreaPallet").remove();
-//   document.location.reload();
-// }
+function clearPalletData() {
+  document.getElementById("displayAreaPallet").remove();
+  document.location.reload();
+}
 
-// document.getElementById("datepicker").valueAsDate = new Date();
+document.getElementById("datepicker").valueAsDate = new Date();
 
 
 
