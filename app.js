@@ -22,13 +22,13 @@ document.addEventListener("DOMContentLoaded", function () {
   
 });
 
-document.querySelector("select").addEventListener("change", setDivision);
+// document.querySelector("select").addEventListener("change", setDivision);
 
 document.querySelector("#sfmCodeBtn").addEventListener("click", generateSFM);
 
 document
   .querySelector("#singleCodeBtn")
-  .addEventListener("click", generateSingle);
+  // .addEventListener("click", generateSingle);
 
 document
   .querySelector("#clearSingleButton")
@@ -36,19 +36,19 @@ document
 
 document
   .querySelector("#multipleCodeBtn")
-  .addEventListener("click", generateMultiple);
+  // .addEventListener("click", generateMultiple);
 
 document
   .querySelector("#clearMultipleButton")
-  .addEventListener("click", clearMultipleData);
+  // .addEventListener("click", clearMultipleData);
 
 document
   .querySelector("#palletCodeBtn")
-  .addEventListener("click", generatePallet);
+  // .addEventListener("click", generatePallet);
 
 document
   .querySelector("#clearPalletButton")
-  .addEventListener("click", clearPalletData);
+  // .addEventListener("click", clearPalletData);
 
 function setDivision(e) {
   division = e.target.value;
@@ -75,7 +75,8 @@ function generateSFM(e){
   }
   // itemCode = ("000000" + itemCode).slice(-16);
   let intervalId;
-  let quantity = document.querySelector("#totalCodes").value;
+  // let quantity = document.querySelector("#totalCodes").value;
+  let quantity = 1
   let beginningNumber = 1
 
   function createLabel(){
@@ -210,7 +211,7 @@ function clearPalletData() {
   document.location.reload();
 }
 
-document.getElementById("datepicker").valueAsDate = new Date();
+// document.getElementById("datepicker").valueAsDate = new Date();
 
 
 
